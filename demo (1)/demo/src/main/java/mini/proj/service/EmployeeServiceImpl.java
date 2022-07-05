@@ -1,15 +1,17 @@
 package mini.proj.service;
 
+import mini.proj.exception.RecordNotFoundException;
 import mini.proj.model.Employee;
 import mini.proj.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeeServiceImpl implements EmployeeService{
+public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -20,33 +22,30 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(Long id) throws RecordNotFoundException {
         Optional<Employee> employee = employeeRepository.findById(id);
         employee.ifPresent(value -> employeeRepository.delete(value));
+        throw new RecordNotFoundException("Employee not found!");
     }
 
     @Override
-    public List<Employee> getAllEmployee() {
-        return employeeRepository.findAll();
+    public Employee getEmployeeById(Long id) throws RecordNotFoundException {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException("Employee not found!"));
     }
 
     @Override
-    public Employee getEmployeeById(Long id) {
-        Optional<Employee> employeeOptional = employeeRepository.findById(id);
-        return employeeOptional.orElse(null);
+    public Employee updateEmployee(Employee reqEmployee, Long id) throws RecordNotFoundException {
+        return employeeRepository.findById(id).map(employee -> {
+            employee.setName(reqEmployee.getName());
+            employee.setLevel(reqEmployee.getLevel());
+            employee.setStatus(reqEmployee.getStatus());
+            return employeeRepository.save(employee);
+        }).orElseThrow(() -> new RecordNotFoundException("id " + id + "Employee not found!"));
     }
 
     @Override
-    public Employee updateEmployee(Employee employee, Long id) {
-        Optional<Employee> employeeOptional = employeeRepository.findById(id);
-        if (employeeOptional.isPresent()) {
-            employeeOptional.get().setName(employee.getName());
-            employeeOptional.get().setLevel(employee.getLevel());
-            employeeOptional.get().setEmail(employee.getEmail());
-            employeeOptional.get().setCommunity(employee.getCommunity());
-            employeeOptional.get().setStatus(employee.getStatus());
-            return employeeRepository.save(employeeOptional.get());
-        }
-    return null;
+    public Page<Employee> getAllEmployees(Pageable pageable) {
+        return employeeRepository.findAll(pageable);
     }
 }
