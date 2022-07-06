@@ -17,11 +17,13 @@ public class Employee {
     @Column
     private String name;
     @Column
-    private String level;
+    @Enumerated(EnumType.STRING)
+    private EmployeeLevel level;
     @Column
     private String email;
     @Column
-    private String community;
+    @Enumerated(EnumType.STRING)
+    private EmployeeCommunity community;
     @Column
     @Enumerated(EnumType.STRING)
     private EmployeeStatus status;

@@ -1,10 +1,10 @@
 INSERT INTO employees (name, level, email, community, status)
-VALUES ('Vin Gonzales', 'Senior Developer', 'alvin.gonzales@softvision.com', 'Enterprise Coffee', 'ACTIVE');
+VALUES ('Vin Gonzales', 'SENIOR_DEVELOPER', 'alvin.gonzales@softvision.com', 'ENTERPRISE_COFFEE', 'ACTIVE');
 INSERT INTO employees (name, level, email, community, status)
-VALUES ('Jay Transfiguracion jr.', 'Developer', 'jay.transfiguracion@softvision.com', 'Enterprise Coffee', 'ACTIVE');
+VALUES ('Jay Transfiguracion jr.', 'DEVELOPER', 'jay.transfiguracion@softvision.com', 'ENTERPRISE_COFFEE', 'ACTIVE');
 INSERT INTO employees (name, level, email, community, status)
-VALUES ('Jerome Garcia', 'Developer', 'jerome.garcia@softvision.com', 'Enterprise Coffee', 'ACTIVE');
+VALUES ('Jerome Garcia', 'DEVELOPER', 'jerome.garcia@softvision.com', 'ENTERPRISE_COFFEE', 'ACTIVE');
 INSERT INTO employees (name, level, email, community, status)
-VALUES ('Jade Fernandez', 'Developer', 'jade.fernandez@softvision.com', 'Enterprise Coffee', 'ACTIVE');
+VALUES ('Jade Fernandez', 'DEVELOPER', 'jade.fernandez@softvision.com', 'ENTERPRISE_COFFEE', 'ACTIVE');
 INSERT INTO employees (name, level, email, community, status)
-VALUES ('Jay Mendoza', 'Developer', 'jay.Mendoza@softvision.com', 'Enterprise Coffee', 'ACTIVE');
+VALUES ('Jay Mendoza', 'DEVELOPER', 'jay.Mendoza@softvision.com', 'ENTERPRISE_COFFEE', 'ACTIVE');
