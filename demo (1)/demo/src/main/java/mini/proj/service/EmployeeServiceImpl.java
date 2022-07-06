@@ -1,11 +1,15 @@
 package mini.proj.service;
 
+import antlr.collections.List;
 import mini.proj.exception.RecordNotFoundException;
 import mini.proj.model.Employee;
 import mini.proj.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -48,4 +52,5 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Page<Employee> getAllEmployees(Pageable pageable) {
         return employeeRepository.findAll(pageable);
     }
+
 }
