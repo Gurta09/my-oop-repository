@@ -1,4 +1,4 @@
-package mini.proj.model;
+package mini.proj.enums;
 
 public enum EmployeeLevel {
 

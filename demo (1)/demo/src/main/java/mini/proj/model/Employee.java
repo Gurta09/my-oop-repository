@@ -2,6 +2,9 @@ package mini.proj.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import mini.proj.enums.EmployeeCommunity;
+import mini.proj.enums.EmployeeLevel;
+import mini.proj.enums.EmployeeStatus;
 
 import javax.persistence.*;
 
