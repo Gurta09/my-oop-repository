@@ -1,18 +1,12 @@
 package mini.proj.service;
 
-import antlr.collections.List;
 import mini.proj.exception.RecordNotFoundException;
 import mini.proj.model.Employee;
 import mini.proj.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -26,10 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void deleteEmployee(Long id) throws RecordNotFoundException {
-        Optional<Employee> employee = employeeRepository.findById(id);
-        employee.ifPresent(value -> employeeRepository.delete(value));
-        throw new RecordNotFoundException("Employee not found!");
+    public String deleteEmployee(Long id) throws RecordNotFoundException {
+        return employeeRepository.findById(id).map(employee -> {
+            employeeRepository.delete(employee);
+            return String.format("%s has been deleted!", employee.getName());
+        }).orElseThrow(() -> new RecordNotFoundException("User not found!"));
     }
 
     @Override

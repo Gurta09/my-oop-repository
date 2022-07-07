@@ -17,16 +17,21 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column
     private String name;
+
     @Column
     @Enumerated(EnumType.STRING)
     private EmployeeLevel level;
+
     @Column
     private String email;
+
     @Column
     @Enumerated(EnumType.STRING)
     private EmployeeCommunity community;
+
     @Column
     @Enumerated(EnumType.STRING)
     private EmployeeStatus status;

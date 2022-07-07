@@ -9,7 +9,7 @@ public interface EmployeeService {
 
     Employee createEmployee(Employee employee);
 
-    void deleteEmployee(Long id) throws RecordNotFoundException;
+    String deleteEmployee(Long id) throws RecordNotFoundException;
 
     Employee getEmployeeById(Long id) throws RecordNotFoundException;
 
