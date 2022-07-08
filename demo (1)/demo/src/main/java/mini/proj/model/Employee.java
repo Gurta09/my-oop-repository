@@ -5,14 +5,16 @@ import lombok.Setter;
 import mini.proj.enums.EmployeeCommunity;
 import mini.proj.enums.EmployeeLevel;
 import mini.proj.enums.EmployeeStatus;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "employees")
-public class Employee {
+public class Employee extends Audit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
